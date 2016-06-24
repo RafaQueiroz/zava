@@ -59,6 +59,8 @@ public class DAO {
     }
 
     public static List<Professor> getProfessores() {
+        professores = new ArrayList<Professor>();
+        
         return professores;
     }
 
