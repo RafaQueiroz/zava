@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package classes;
-    
-import java.sql.Date;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -22,7 +21,6 @@ public class DAO {
     private static List<Aluno> alunos;
     private static List<Curso> cursos;
     private static List<Professor> professores;
-    private static List<Usuario> usuarios;
 
     public static List<Aluno> getAlunos() throws SQLException {
         alunos = new ArrayList<Aluno>();
@@ -30,6 +28,7 @@ public class DAO {
         ResultSet res = con.busca("select * from usuarios;");
         while(res.next()){
             Aluno aluno = new Aluno();
+            aluno.setId(res.getInt("id"));
             aluno.setNome(res.getString("nome"));
             aluno.setEmail(res.getString("email"));
             aluno.setSenha(res.getString("senha"));
@@ -48,6 +47,7 @@ public class DAO {
         ResultSet res = con.busca("select * from cursos;");
         while(res.next()){
             Curso curso = new Curso();
+            curso.setId(res.getInt("id"));
             curso.setNome(res.getString("nome"));
             curso.setCarga_horaria(res.getInt("carga_horaria"));
             curso.setPreco(res.getInt("preco"));
@@ -58,16 +58,59 @@ public class DAO {
         return cursos;
     }
 
-    public static List<Professor> getProfessores() {
+    public static List<Professor> getProfessores() throws SQLException {
         professores = new ArrayList<Professor>();
+        Conexao con = new Conexao();
+        ResultSet res = con.busca("select * from instrutores");
         
+        while(res.next()){
+            Professor professor = new Professor();
+            
+            professor.setId(res.getInt("id"));
+            professor.setNome(res.getString("nome"));
+            professor.setEmail(res.getString("email"));
+            professor.setSenha(res.getString("senha"));
+            professor.setCertificados(res.getString("certificados"));
+            professor.setValor_hora(res.getInt("valor_hora"));
+        }
+        con.close();
         return professores;
     }
-
-    public static List<Usuario> getUsuarios() {
-        return usuarios;
+    
+    public static void insereUsuario(Usuario usuario) throws SQLException{
+        Conexao con = new Conexao();
+        String query ="insert into Alunos "
+                + "values(susuarios.nextval, '"+usuario.getNome()
+                +"','"+usuario.getEmail()+"','"+usuario.getCpf()+"','"
+                + usuario.getSenha()+"');";
+        Statement stm = con.getStm();
+        stm.execute(query);
+        con.getCon().commit();
+        con.close();
     }
     
+    public static void insereInstrutor(Professor professor) throws SQLException{
+        Conexao con = new Conexao();
+        String query ="insert into professor "
+                + "values(scursos.nextval, '"+professor.getNome()
+                +"','"+professor.getEmail()+"',"+professor.getValor_hora()+",'"
+                +"','"+professor.getCertificados()+ professor.getSenha()+"');";
+        Statement stm = con.getStm();
+        stm.execute(query);
+        con.getCon().commit();
+        con.close();
+    }
     
+    public static void insereCurso(Curso curso) throws SQLException{
+        Conexao con = new Conexao();
+        String query ="insert into professor "
+                + "values(sprofessores.nextval, '"+curso.getNome()
+                +"','"+curso.getRequisito()+"',"+curso.getCarga_horaria()+",'"
+                +"',"+curso.getPreco()+");";
+        Statement stm = con.getStm();
+        stm.execute(query);
+        con.getCon().commit();
+        con.close();
+    }
     
 }

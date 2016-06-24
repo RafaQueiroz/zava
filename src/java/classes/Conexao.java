@@ -26,10 +26,9 @@ public class Conexao {
          con =  
             DriverManager.getConnection(  
               "jdbc:oracle:thin:@oracle.inf.poa.ifrs.edu.br:1521:XE", "usr75","usr75");  
-         stm = con.createStatement();   
-           
+         stm = con.createStatement();
       } catch (Exception e) {  
-         System.out.println("não foi possível conectar ao banco" + e.getMessage());  
+         System.out.println("não foi possível conectar ao banco" + e.getMessage());   
       }  
     } 
     
@@ -55,5 +54,16 @@ public class Conexao {
     public void close() throws SQLException{
         con.close();
     }
+
+    public Statement getStm() {
+        return stm;
+    }
+
+    public Connection getCon() {
+        return con;
+    }
+    
+    
+    
     
 }

@@ -6,13 +6,14 @@
 package classes;
 
 import java.sql.Date;
-import java.util.Calendar;
+
 
 /**
  *
  * @author 0369152
  */
 public class Aluno{
+    
     private int id;
     private String cpf;
     private String nome;
@@ -21,20 +22,20 @@ public class Aluno{
     private Date dataNasc;
     private String senha; 
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getCpf() {
@@ -77,8 +78,7 @@ public class Aluno{
         this.dataNasc = dataNasc;
     }
 
-    public Aluno(int id, String cpf, String nome, String email, String telefone, Date dataNasc) {
-        this.id = id;
+    public Aluno(String nome, String email, String cpf, String telefone, Date dataNasc) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;

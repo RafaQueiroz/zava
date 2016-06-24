@@ -10,11 +10,31 @@ package classes;
  * @author 0369152
  */
 public class Professor{
+    private int id;
     private String nome;
     private String email;
     private int valor_hora;
     private String certificados;
+    private String senha;
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getNome() {
         return nome;
     }

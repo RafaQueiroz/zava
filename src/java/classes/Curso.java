@@ -12,11 +12,21 @@ import java.util.Calendar;
  * @author 0369152
  */
 public class Curso {
+    private int id;
     private String nome;
     private String requisito;
     private int carga_horaria;
     private float preco;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getNome() {
         return nome;
     }
