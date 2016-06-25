@@ -24,19 +24,20 @@ public class DAO {
 
     public static List<Aluno> getAlunos() throws SQLException {
         alunos = new ArrayList<Aluno>();
+        
         Conexao con = new Conexao();
-        ResultSet res = con.busca("select * from usuarios;");
+        ResultSet res = con.busca("select * from alunos");
         while(res.next()){
             Aluno aluno = new Aluno();
             aluno.setId(res.getInt("id"));
+            aluno.setCpf(res.getString("cpf"));
             aluno.setNome(res.getString("nome"));
             aluno.setEmail(res.getString("email"));
+            aluno.setTelefone(res.getString("fone"));
             aluno.setSenha(res.getString("senha"));
-            aluno.setCpf(res.getString("cpf"));
-            aluno.setTelefone(res.getString("telefone"));
             alunos.add(aluno);
     }
-        con.close();
+        
         return alunos;
     }
 
@@ -45,6 +46,7 @@ public class DAO {
         
         Conexao con = new Conexao();
         ResultSet res = con.busca("select * from cursos;");
+        
         while(res.next()){
             Curso curso = new Curso();
             curso.setId(res.getInt("id"));
@@ -54,7 +56,6 @@ public class DAO {
             curso.setRequisito(res.getString("requisitos"));
             cursos.add(curso);
         }
-        con.close();
         return cursos;
     }
 
@@ -73,44 +74,51 @@ public class DAO {
             professor.setCertificados(res.getString("certificados"));
             professor.setValor_hora(res.getInt("valor_hora"));
         }
-        con.close();
         return professores;
     }
-    
-    public static void insereUsuario(Usuario usuario) throws SQLException{
+    //Operções de inserção
+    public static void insereAluno(Aluno aluno) throws SQLException{
         Conexao con = new Conexao();
-        String query ="insert into Alunos "
-                + "values(susuarios.nextval, '"+usuario.getNome()
-                +"','"+usuario.getEmail()+"','"+usuario.getCpf()+"','"
-                + usuario.getSenha()+"');";
-        Statement stm = con.getStm();
-        stm.execute(query);
-        con.getCon().commit();
-        con.close();
+        String query ="insert into alunos "
+                + "values(salunos.nextval, '"+aluno.getCpf()+"','"+aluno.getNome()+"','"
+                +aluno.getEmail()+"','"+aluno.getTelefone()+"',to_date('"+aluno.getDataNasc()+"','dd/mm/yy'),'"
+                +aluno.getSenha()+"');";
+        System.out.println(query);
+        con.executaQuery(query);
+        System.out.println("Insere Aluno!");
     }
     
     public static void insereInstrutor(Professor professor) throws SQLException{
         Conexao con = new Conexao();
+        
         String query ="insert into professor "
                 + "values(scursos.nextval, '"+professor.getNome()
                 +"','"+professor.getEmail()+"',"+professor.getValor_hora()+",'"
-                +"','"+professor.getCertificados()+ professor.getSenha()+"');";
-        Statement stm = con.getStm();
-        stm.execute(query);
-        con.getCon().commit();
-        con.close();
+                +"','"+professor.getCertificados()+ professor.getSenha()+"')";
+        
+        System.out.println(query);
+        con.executaQuery(query);
+        System.out.println("Insere Instrutor!");
     }
     
     public static void insereCurso(Curso curso) throws SQLException{
         Conexao con = new Conexao();
-        String query ="insert into professor "
-                + "values(sprofessores.nextval, '"+curso.getNome()
-                +"','"+curso.getRequisito()+"',"+curso.getCarga_horaria()+",'"
-                +"',"+curso.getPreco()+");";
-        Statement stm = con.getStm();
-        stm.execute(query);
-        con.getCon().commit();
-        con.close();
+        String query ="insert into cursos values(scursos.nextval,'"+curso.getNome()+"','"+curso.getRequisito()+"',"+curso.getCarga_horaria()+","+curso.getPreco()+")";
+//        String query ="insert into cursos values(scursos.nextvalue,'"+curso.getNome()+"','"+curso.getRequisito()+"',"+curso.getCarga_horaria()+",400)";
+        System.out.println(query);
+        con.executaQuery(query);
+        System.out.println("Insere Curso!");
+    }
+    
+    public static Aluno getAlunoById(int id){
+        Aluno alunoSaida = new Aluno();
+        for(Aluno aluno : alunos){
+            if(aluno.getId() == id){
+                alunoSaida = aluno;
+                break;
+            }
+        }
+        return alunoSaida;
     }
     
 }

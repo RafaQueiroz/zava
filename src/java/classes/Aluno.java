@@ -19,7 +19,7 @@ public class Aluno{
     private String nome;
     private String email;
     private String telefone;
-    private Date dataNasc;
+    private String dataNasc;
     private String senha; 
 
     public int getId() {
@@ -70,20 +70,21 @@ public class Aluno{
         this.telefone = telefone;
     }
 
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 
-    public Aluno(String nome, String email, String cpf, String telefone, Date dataNasc) {
+    public Aluno(String nome, String email, String cpf, String telefone, String dataNasc, String senha) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.dataNasc = dataNasc;
+        this.senha = senha;
     }
     public Aluno() {
 

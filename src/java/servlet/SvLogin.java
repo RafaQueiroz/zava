@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
 import java.io.IOException;
@@ -12,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import classes.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,6 +29,8 @@ public class SvLogin extends HttpServlet {
         
             String email = (String) request.getParameter("email");
             String senha = (String) request.getParameter("senha");
+            System.out.println("Email(Login): "+ email);
+            System.out.println("Email(senha): "+ senha);
             
             String destino = "index.html";
             
@@ -40,20 +38,25 @@ public class SvLogin extends HttpServlet {
             try {
                 List<Aluno> alunos = DAO.getAlunos();
                 for(Aluno aluno : alunos){
+                    System.out.println("Email(Banco): "+ aluno.getEmail());
+                    System.out.println("Email(Banco): "+ aluno.getSenha());
+                    
                     if(email.equals(aluno.getEmail()) && senha.equals(aluno.getSenha())){
+                        Aluno alunoSaida = new Aluno();
+                        alunoSaida = aluno;
                         destino="home.jsp";
-                        request.setAttribute("aluno", aluno);
+                        request.setAttribute("aluno", alunoSaida);
                         break;
                     }
                 }
-                RequestDispatcher rd = request.getRequestDispatcher(destino);
-                rd.forward(request, response);
+                
+                
             } catch (SQLException ex) {
+                destino = "index.jsp";
                 Logger.getLogger(SvLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            
+            RequestDispatcher rd = request.getRequestDispatcher(destino);
+            rd.forward(request, response);
     }
 
     /**

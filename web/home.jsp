@@ -4,12 +4,13 @@
     Author     : 0369152
 --%>
 
+<%@page import="classes.Aluno"%>
 <%@page import="classes.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c"uri="http://java.sun.com/jsp/jstl/core"%>
 <% 
-    Usuario usr = new Usuario();
-    usr = (Usuario) request.getAttribute("usr");
+    Aluno aluno = new Aluno();
+    aluno = (Aluno) request.getAttribute("aluno");
     
 %>
 <!DOCTYPE html>
@@ -19,6 +20,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Olá <%= usr.getEmail() %></h1>
+        <%@include file="menu.jsp"%>
+        <h1>Olá <%= aluno.getEmail() %></h1>
     </body>
 </html>

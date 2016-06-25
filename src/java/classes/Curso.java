@@ -16,7 +16,7 @@ public class Curso {
     private String nome;
     private String requisito;
     private int carga_horaria;
-    private float preco;
+    private int preco;
 
     public int getId() {
         return id;
@@ -55,8 +55,18 @@ public class Curso {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(int preco) {
         this.preco = preco;
+    }
+
+    public Curso(String nome, String requisito, int carga_horaria, int preco) {
+        this.nome = nome;
+        this.requisito = requisito;
+        this.carga_horaria = carga_horaria;
+        this.preco = preco;
+    }
+    public Curso(){
+        
     }
     
     
