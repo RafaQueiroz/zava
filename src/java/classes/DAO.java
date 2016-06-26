@@ -45,7 +45,7 @@ public class DAO {
         cursos = new ArrayList<Curso>();
         
         Conexao con = new Conexao();
-        ResultSet res = con.busca("select * from cursos;");
+        ResultSet res = con.busca("select * from cursos");
         
         while(res.next()){
             Curso curso = new Curso();
@@ -53,7 +53,7 @@ public class DAO {
             curso.setNome(res.getString("nome"));
             curso.setCarga_horaria(res.getInt("carga_horaria"));
             curso.setPreco(res.getInt("preco"));
-            curso.setRequisito(res.getString("requisitos"));
+            curso.setRequisito(res.getString("requisito"));
             cursos.add(curso);
         }
         return cursos;
@@ -111,6 +111,19 @@ public class DAO {
         System.out.println("Insere Curso!");
     }
     
+    public static void insereturma(Turma turma) throws SQLException{
+        Conexao con = new Conexao();
+        String query ="insert into turmas values(sturmas.nextval,'"+turma.getProfessor().getId()+"','"
+                +turma.getCurso().getId()+"',to_date('"+turma.getDataInicio()+"','dd/mm/yy'),to_date('"+turma.getDataFim()+"','dd/mm/yy'),"+turma.getCargaHoraria()+")";
+
+        System.out.println(query);
+        con.executaQuery(query);
+        System.out.println("Insere Curso!");
+    }
+    
+    
+    
+    //get by id
     public static Aluno getAlunoById(int id){
         Aluno alunoSaida = new Aluno();
         for(Aluno aluno : alunos){
@@ -120,6 +133,26 @@ public class DAO {
             }
         }
         return alunoSaida;
+    }
+    public static Curso getCursoById(int id){
+        Curso cursoSaida = new Curso();
+        for(Curso curso : cursos){
+            if(curso.getId() == id){
+                cursoSaida = curso;
+                break;
+            }
+        }
+        return cursoSaida;
+    }
+    public static Professor getProfessorById(int id){
+        Professor professorSaida = new Professor();
+        for(Professor professor : professores){
+            if(professor.getId() == id){
+                professorSaida = professor;
+                break;
+            }
+        }
+        return professorSaida;
     }
     
 }

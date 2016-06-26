@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author rafael
  */
 @WebServlet(name = "SvMatriicula", urlPatterns = {"/SvMatriicula"})
-public class SvMatriicula extends HttpServlet {
+public class SvMatricula extends HttpServlet {
 
     
     @Override
@@ -41,7 +41,7 @@ public class SvMatriicula extends HttpServlet {
             request.setAttribute("listaCursos", cursos);
             rd.forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(SvMatriicula.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SvMatricula.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     

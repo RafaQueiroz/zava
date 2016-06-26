@@ -11,9 +11,9 @@ import java.util.List;
 public class Turma { 
     private Professor professor;
     private Curso curso;
-    private Date data_inicio;
-    private Date data_fim;
-    private int carga_horaria;
+    private String dataInicio;
+    private String dataFim;
+    private int cargaHoraria;
     private List<Aluno> alunos;
 
     public List<Aluno> getAlunos() {
@@ -40,40 +40,42 @@ public class Turma {
         this.curso = curso;
     }
 
-    public Date getData_inicio() {
-        return data_inicio;
+    public String getDataInicio() {
+        return dataInicio;
     }
 
-    public void setData_inicio(Date data_inicio) {
-        this.data_inicio = data_inicio;
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    public Date getData_fim() {
-        return data_fim;
+    public String getDataFim() {
+        return dataFim;
     }
 
-    public void setData_fim(Date data_fim) {
-        this.data_fim = data_fim;
+    public void setDataFim(String dataFim) {
+        this.dataFim = dataFim;
     }
 
-    public int getCarga_horaria() {
-        return carga_horaria;
+    public int getCargaHoraria() {
+        return cargaHoraria;
     }
 
-    public void setCarga_horaria(int carga_horaria) {
-        this.carga_horaria = carga_horaria;
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
-
+    
     public Turma() {
     }
 
-    public Turma(Professor professor, Curso curso, Date data_inicio, Date data_fim, int carga_horaria) {
+    public Turma(Professor professor, Curso curso, String dataInicio, String dataFim, int cargaHoraria) {
         this.professor = professor;
         this.curso = curso;
-        this.data_inicio = data_inicio;
-        this.data_fim = data_fim;
-        this.carga_horaria = carga_horaria;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.cargaHoraria = cargaHoraria;
     }
+
+    
     
     
     
