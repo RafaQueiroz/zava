@@ -9,26 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Curso</title>
     </head>
     <body>
-        <h1>Cadastro de alunos</h1>
-        <div class="cadastraAluno">
-            <form action="../SvCadastraAluno" method="post">
+        <h1>Cadastro de Professores</h1>
+        <div class="cadastraFrom">
+            <form action="../SvCadastraProfessor" method="post">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome">
 
-                <label for="cpf">Cpf:</label>
-                <input type="text" name="cpf">
+                <label for="cpf">Certificados:</label>
+                <input type="text" name="certificados">
 
                 <label for="nome">Email:</label>
                 <input type="text" name="email">
-
-                <label for="nome">Telefone:</label>
-                <input type="text" name="telefone">
-
-                <label for="nome">Data de Nascimento:</label>
-                <input type="text" name="dataNascimento">
+                
+                <label for="nome">Valor Hora:</label>
+                <input type="number" name="valorHora">
 
                 <label for="nome">Senha:</label>
                 <input type="text" name="senha">

@@ -7,6 +7,7 @@ package classes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,27 +19,26 @@ public class Conexao {
    public Statement stm;  
    public ResultSet res = null;  
   
-    public Conexao() {  
-  
-      try {  
-  
-         Class.forName("oracle.jdbc.driver.OracleDriver");  
-         con =  
-            DriverManager.getConnection(  
-              "jdbc:oracle:thin:@oracle.inf.poa.ifrs.edu.br:1521:XE", "usr75","usr75");  
-         stm = con.createStatement();   
-           
+    public Conexao(){
+        
+      try {
+        Class.forName("oracle.jdbc.driver.OracleDriver");  
+        con = DriverManager.getConnection( "jdbc:oracle:thin:@oracle.inf.poa.ifrs.edu.br:1521:XE", "usr75","usr75");
+        stm = con.createStatement();
+
       } catch (Exception e) {  
-         System.out.println("não foi possível conectar ao banco" + e.getMessage());  
-      }  
+         System.out.println("não foi possível conectar ao banco" + e.getCause());
+      }
     } 
     
     public void executaQuery(String query){  
      
       try {  
-         stm.executeUpdate(query);
+          PreparedStatement stmt = con.prepareStatement(query);
+         stmt.execute();
          con.commit();
          System.out.println("Registro inserido");
+         
       }catch (SQLException e){System.out.println("Erro na inserção:" + e.getMessage());}  
         
     }
@@ -52,8 +52,4 @@ public class Conexao {
         
       return res;  
     }
-    public void close() throws SQLException{
-        con.close();
-    }
-    
 }

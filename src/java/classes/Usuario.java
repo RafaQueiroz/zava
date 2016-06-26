@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package classes;
 
 /**
@@ -10,6 +5,10 @@ package classes;
  * @author 0369152
  */
 public class Usuario{
+    private static final int PROFESSOR = 1;
+    private static final int ALUNO = 2;
+    
+    
     private String nome;
     private String email;
     private String senha;

@@ -6,27 +6,24 @@
 package classes;
 
 import java.sql.Date;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin
 
 /**
  *
  * @author 0369152
  */
 public class Aluno{
+    
     private int id;
     private String cpf;
     private String nome;
     private String email;
     private String telefone;
-    private Date dataNasc;
+    private String dataNasc;
     private String senha; 
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 
     public int getId() {
         return id;
@@ -34,6 +31,14 @@ public class Aluno{
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getCpf() {
@@ -68,21 +73,21 @@ public class Aluno{
         this.telefone = telefone;
     }
 
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 
-    public Aluno(int id, String cpf, String nome, String email, String telefone, Date dataNasc) {
-        this.id = id;
+    public Aluno(String nome, String email, String cpf, String telefone, String dataNasc, String senha) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.dataNasc = dataNasc;
+        this.senha = senha;
     }
     public Aluno() {
 
