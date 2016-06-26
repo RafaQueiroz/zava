@@ -33,9 +33,9 @@ public class SvLogin extends HttpServlet {
             System.out.println("Email(senha): "+ senha);
             
             String destino = "index.html";
-            
-            ResultSet rs;
+            boolean logado = false;
             try {
+                
                 List<Aluno> alunos = DAO.getAlunos();
                 for(Aluno aluno : alunos){
                     System.out.println("Email(Banco): "+ aluno.getEmail());
@@ -46,7 +46,27 @@ public class SvLogin extends HttpServlet {
                         alunoSaida = aluno;
                         destino="home.jsp";
                         request.setAttribute("aluno", alunoSaida);
+                        logado = true;
                         break;
+                    }
+                }
+                
+                System.out.println(logado);
+                if(true){
+                    System.out.println("Entrou");
+
+                    List<Professor> professores = DAO.getProfessores();
+                    for(Professor professor : professores){
+                        System.out.println("Email(Banco): "+ professor.getEmail());
+                        System.out.println("Email(Banco): "+ professor.getSenha());
+                        if(email.equals(professor.getEmail()) && senha.equals(professor.getSenha())){
+                            Professor professorSaida = new Professor();
+                            professorSaida = professor;
+                            destino="homeProfessor.jsp";
+                            request.setAttribute("professor", professorSaida);
+                            logado = true;
+                            break;
+                        }
                     }
                 }
                 

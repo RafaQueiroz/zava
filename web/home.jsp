@@ -20,7 +20,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="menu.jsp"%>
-        <h1>Olá <%= aluno.getEmail() %></h1>
+         <div class="menu">
+            <ul>
+                <li><a href="SvMatricula">Fazer Matricula</a></li>
+            </ul>
+                
+        </div>
+        <h1>Olá <%= aluno.getNome() %></h1>
     </body>
 </html>

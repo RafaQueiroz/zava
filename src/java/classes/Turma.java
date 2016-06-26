@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package classes;
 
 import java.sql.Date;
@@ -18,6 +14,15 @@ public class Turma {
     private Date data_inicio;
     private Date data_fim;
     private int carga_horaria;
+    private List<Aluno> alunos;
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
 
     public Professor getProfessor() {
         return professor;

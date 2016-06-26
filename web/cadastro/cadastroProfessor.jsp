@@ -19,7 +19,7 @@
                 <input type="text" name="nome">
 
                 <label for="cpf">Certificados:</label>
-                <input type="textarea" name="certificados">
+                <input type="text" name="certificados">
 
                 <label for="nome">Email:</label>
                 <input type="text" name="email">

@@ -73,6 +73,7 @@ public class DAO {
             professor.setSenha(res.getString("senha"));
             professor.setCertificados(res.getString("certificados"));
             professor.setValor_hora(res.getInt("valor_hora"));
+            professores.add(professor);
         }
         return professores;
     }
@@ -91,10 +92,9 @@ public class DAO {
     public static void insereInstrutor(Professor professor) throws SQLException{
         Conexao con = new Conexao();
         
-        String query ="insert into professor "
-                + "values(scursos.nextval, '"+professor.getNome()
-                +"','"+professor.getEmail()+"',"+professor.getValor_hora()+",'"
-                +"','"+professor.getCertificados()+ professor.getSenha()+"')";
+        String query ="insert into instrutores   values(sintrutores.nextval,'"+professor.getNome()
+                        +"','"+professor.getEmail()+"',"+professor.getValor_hora()+",'"
+                        +professor.getCertificados()+"','"+professor.getSenha()+"')";
         
         System.out.println(query);
         con.executaQuery(query);
@@ -103,8 +103,9 @@ public class DAO {
     
     public static void insereCurso(Curso curso) throws SQLException{
         Conexao con = new Conexao();
-        String query ="insert into cursos values(scursos.nextval,'"+curso.getNome()+"','"+curso.getRequisito()+"',"+curso.getCarga_horaria()+","+curso.getPreco()+")";
-//        String query ="insert into cursos values(scursos.nextvalue,'"+curso.getNome()+"','"+curso.getRequisito()+"',"+curso.getCarga_horaria()+",400)";
+        String query ="insert into cursos values(scursos.nextval,'"+curso.getNome()+"','"
+                +curso.getRequisito()+"',"+curso.getCarga_horaria()+","+curso.getPreco()+")";
+
         System.out.println(query);
         con.executaQuery(query);
         System.out.println("Insere Curso!");

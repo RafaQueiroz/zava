@@ -5,13 +5,16 @@
  */
 package servlet;
 
+import classes.Curso;
 import classes.DAO;
-import classes.Professor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,28 +25,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rafael
  */
-@WebServlet(name = "SvCadastraProfessor", urlPatterns = {"/SvCadastraProfessor"})
-public class SvCadastraProfessor extends HttpServlet {
+@WebServlet(name = "SvMatriicula", urlPatterns = {"/SvMatriicula"})
+public class SvMatriicula extends HttpServlet {
 
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String nome = (String) request.getParameter("nome");
-        String email = (String) request.getParameter("email");
-        int valorHora = Integer.parseInt(request.getParameter("valorHora"));
-        String certificados = (String) request.getParameter("certificados");
-        String senha = (String) request.getParameter("senha");
-    
-        Professor professor = new Professor(nome, email, valorHora, certificados, senha);
-        
+            
+            
         try {
-            DAO.insereInstrutor(professor);
+            List<Curso> cursos = new ArrayList<Curso>();
+            cursos = DAO.getCursos();
+            RequestDispatcher rd = request.getRequestDispatcher("matricula.jsp");
+            request.setAttribute("listaCursos", cursos);
+            rd.forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(SvCadastraProfessor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SvMatriicula.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    
+    
     }
 
-    
 }
