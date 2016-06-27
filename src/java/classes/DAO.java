@@ -21,6 +21,7 @@ public class DAO {
     private static List<Aluno> alunos;
     private static List<Curso> cursos;
     private static List<Professor> professores;
+    private static List<Turma> turmas;
 
     public static List<Aluno> getAlunos() throws SQLException {
         alunos = new ArrayList<Aluno>();
@@ -77,6 +78,33 @@ public class DAO {
         }
         return professores;
     }
+
+    public static List<Turma> getTurmas() throws SQLException {
+        turmas = new ArrayList<Turma>();
+        Conexao con = new Conexao();
+        ResultSet res = con.busca("select * from turmas");
+        
+        while(res.next()){
+            Curso curso = new Curso();
+            Professor professor = new Professor();
+            curso = DAO.getCursoById(res.getInt("cursos_id"));
+            professor = DAO.getProfessorById(res.getInt("instrutores_id"));
+            
+            Turma turma = new Turma();
+            
+            turma.setId(res.getInt("id"));
+            turma.setProfessor(professor);
+            turma.setCurso(curso);
+            String data = res.getString("data_inicio");
+            turma.setDataInicio(data);
+            data = res.getString("data_fim");
+            turma.setDataInicio(data);
+            turma.setCargaHoraria(res.getInt("carga_horaria"));
+            turmas.add(turma);
+        }
+        return turmas;
+    }
+    
     //Operções de inserção
     public static void insereAluno(Aluno aluno) throws SQLException{
         Conexao con = new Conexao();
@@ -121,6 +149,18 @@ public class DAO {
         System.out.println("Insere Curso!");
     }
     
+    public static void insereMatricula(Matricula matricula) throws SQLException{
+        Conexao con = new Conexao();
+        String query ="insert into matriculasvalues(smatriculas.nextval,'"+matricula.getTurma().getId()+"',"
+                +matricula.getAluno().getId()+", sysdate)";
+        
+        System.out.println(query);
+        con.executaQuery(query);
+        System.out.println("Insere Matricula!");
+    }
+    
+    
+    
     
     
     //get by id
@@ -153,6 +193,16 @@ public class DAO {
             }
         }
         return professorSaida;
+    }
+    public static Turma getTurmaById(int id){
+        Turma turmaSaida = new Turma();
+        for(Turma turma : turmas){
+            if(turma.getId() == id){
+                turmaSaida = turma;
+                break;
+            }
+        }
+        return turmaSaida;
     }
     
 }

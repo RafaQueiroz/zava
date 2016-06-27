@@ -7,52 +7,24 @@ package classes;
 public class Usuario{
     private static final int PROFESSOR = 1;
     private static final int ALUNO = 2;
-    
-    
-    private String nome;
-    private String email;
-    private String senha;
-    private String cpf;
+        
+    private int id;
+    private int tipo;
 
-    public String getNome() {
-        return nome;
+    public int getTipo() {
+        return tipo;
+    }
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }    
+
+    public int getId() {
+        return id;
     }
 
-    public String getEmail() {
-        return email;
+    public void setId(int id) {
+        this.id = id;
     }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Usuario(String nome, String email, String senha, String cpf) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-    }
-    
     public Usuario(){
         
     }

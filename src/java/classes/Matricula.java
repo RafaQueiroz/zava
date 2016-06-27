@@ -12,10 +12,18 @@ import java.sql.Date;
  * @author rafael
  */
 public class Matricula {
+    private int id; 
     private Turma turma;
     private Aluno aluno;
     private Date data_matricula;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public Turma getTurma() {
         return turma;
     }
@@ -43,10 +51,9 @@ public class Matricula {
     public Matricula() {
     }
 
-    public Matricula(Turma turma, Aluno aluno, Date data_matricula) {
+    public Matricula(Turma turma, Aluno aluno) {
         this.turma = turma;
         this.aluno = aluno;
-        this.data_matricula = data_matricula;
     }
     
     

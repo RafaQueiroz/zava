@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import classes.*;
+import classes.Aluno;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,47 +31,52 @@ public class SvLogin extends HttpServlet {
         
             String email = (String) request.getParameter("email");
             String senha = (String) request.getParameter("senha");
-            System.out.println("Email(Login): "+ email);
-            System.out.println("Email(senha): "+ senha);
+            
             
             String destino = "index.html";
             boolean logado = false;
+            HttpSession session = request.getSession();
             try {
                 
                 List<Aluno> alunos = DAO.getAlunos();
                 for(Aluno aluno : alunos){
-                    System.out.println("Email(Banco): "+ aluno.getEmail());
-                    System.out.println("Email(Banco): "+ aluno.getSenha());
+                    
                     
                     if(email.equals(aluno.getEmail()) && senha.equals(aluno.getSenha())){
-                        Aluno alunoSaida = new Aluno();
-                        alunoSaida = aluno;
+                        Usuario usuario = new Usuario();
+                        
+                        usuario.setId(aluno.getId());
+                        usuario.setTipo(2);
+                        
                         destino="home.jsp";
-                        request.setAttribute("aluno", alunoSaida);
+                        session.setAttribute("aluno", aluno);
+                        request.setAttribute("aluno", aluno);
                         logado = true;
+                        
+                        
                         break;
                     }
                 }
-                
-                System.out.println(logado);
-                if(true){
+                if(logado != true){
                     System.out.println("Entrou");
 
                     List<Professor> professores = DAO.getProfessores();
                     for(Professor professor : professores){
-                        System.out.println("Email(Banco): "+ professor.getEmail());
-                        System.out.println("Email(Banco): "+ professor.getSenha());
+                        
                         if(email.equals(professor.getEmail()) && senha.equals(professor.getSenha())){
-                            Professor professorSaida = new Professor();
-                            professorSaida = professor;
+                            Usuario usuario = new Usuario();
+                            
+                            usuario.setId(professor.getId());
+                            usuario.setTipo(1);
+                            
                             destino="homeProfessor.jsp";
-                            request.setAttribute("professor", professorSaida);
+//                            session.setAttribute("professor", professor);
+                            request.setAttribute("professor", professor);
                             logado = true;
                             break;
                         }
                     }
                 }
-                
                 
             } catch (SQLException ex) {
                 destino = "index.jsp";

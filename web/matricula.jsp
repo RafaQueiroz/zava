@@ -25,15 +25,10 @@
                 FROM turmas t, cursos c 
                 WHERE t.cursos_id = c.id
         </sql:query>
-        <sql:query dataSource="${datasource}" var="data">
-            SELECT TO_CHAR
-                (SYSDATE, 'MM/DD/YY') "NOW"
-                 FROM DUAL
-        </sql:query>
 
         <h1>Matricula</h1>
         <div class="cadastroForm">
-            <form action="SvMatricula" method="post">
+            <form action="SvFazMatricula" method="post">
                 
                 <select name="turma">
                     <option value="">Turma</option>
@@ -41,8 +36,7 @@
                         <option value="${row.id}">${row.nome}</option>
                     </c:forEach>
                 </select>
-                <label>Data Matricula</label>
-                <input type="text" value="${data.now}">
+                <input type="submit" value="Matricular">
             </form>
         </div>
     </body>

@@ -9,6 +9,7 @@ import java.util.List;
  * @author 0369152
  */
 public class Turma { 
+    private int id;
     private Professor professor;
     private Curso curso;
     private String dataInicio;
@@ -24,6 +25,13 @@ public class Turma {
         this.alunos = alunos;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }    
     public Professor getProfessor() {
         return professor;
     }
