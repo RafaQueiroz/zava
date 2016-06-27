@@ -11,7 +11,12 @@
 <%@taglib prefix="c"uri="http://java.sun.com/jsp/jstl/core"%>
 <% 
     Aluno aluno = new Aluno();
-    aluno = (Aluno) request.getAttribute("aluno");
+    HttpSession httpSession = request.getSession();
+    aluno = (Aluno) httpSession.getAttribute("aluno");
+    
+    
+    
+//    aluno = (Aluno) request.getAttribute("aluno");
     
 %>
 <!DOCTYPE html>
@@ -32,12 +37,15 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="acessibility-menu">      
                 <ul>
+                    <li><a>Home</a></li>
                     <li><a href="matricula.jsp">Matricula</a></li>
+                    <li><a href="/Cursos/index.html">SAir</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Acessibilidade <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                      
                       <li><a href="javascript:aumentarFonte()" id="aumentarFonte">Aumentar fonte</a></li>
                       <li><a href="javascript:diminuirFonte()" id="diminuirFonte">Diminuir fonte</a></li>
                       <li><a href="javascript:tamanhoOriginal()" id="tamanhoOriginal">Tamanho original</a></li>

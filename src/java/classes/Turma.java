@@ -82,6 +82,21 @@ public class Turma {
         this.dataFim = dataFim;
         this.cargaHoraria = cargaHoraria;
     }
+    
+    
+    public Turma(int idProfessor, int idCurso, String dataInicio, String dataFim, int cargaHoraria) {
+        Professor professor = new Professor();
+        Curso curso = new Curso();
+        
+        professor = DAO.getProfessorById(idProfessor);
+        curso = DAO.getCursoById(idCurso);
+        
+        this.professor = professor;
+        this.curso = curso;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.cargaHoraria = cargaHoraria;
+    }
 
     
     

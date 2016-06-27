@@ -19,6 +19,8 @@ import classes.Turma;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author rafael
@@ -31,18 +33,35 @@ public class SvFazMatricula extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         Aluno aluno = new Aluno();
-        aluno = (Aluno) request.getSession().getAttribute("aluno");
         
-        int idTurma = Integer.parseInt(request.getParameter("tumra"));
-        int idAluno = aluno.getId();
-        Turma turma = DAO.getTurmaById(idTurma);
+        HttpSession httpSession = request.getSession(true);
+        aluno = (Aluno) httpSession.getAttribute("aluno");
         
-        Matricula matricula = new Matricula(turma, aluno);
+        int idTurma = Integer.parseInt(request.getParameter("turma"));
+        System.out.println(aluno.getNome()+" "+idTurma);
+        
+        Turma turma = new Turma();
         try {
+            DAO.getProfessores();
+            DAO.getCursos();
+            DAO.getTurmas();
+            turma = DAO.getTurmaById(idTurma);
+            
+            Matricula matricula = new Matricula(turma, aluno);
             DAO.insereMatricula(matricula);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/Cursos/home.jsp");
+            rd.forward(request, response);
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(SvFazMatricula.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+        
     }
 }

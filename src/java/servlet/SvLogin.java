@@ -35,7 +35,7 @@ public class SvLogin extends HttpServlet {
             
             String destino = "index.html";
             boolean logado = false;
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             try {
                 
                 List<Aluno> alunos = DAO.getAlunos();

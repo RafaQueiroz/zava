@@ -80,26 +80,46 @@ public class DAO {
     }
 
     public static List<Turma> getTurmas() throws SQLException {
+        
         turmas = new ArrayList<Turma>();
+        System.out.println("Conectou");
+        
         Conexao con = new Conexao();
+        System.out.println("Buscando tuplas");
+        
         ResultSet res = con.busca("select * from turmas");
+        System.out.println("Salvando resultados");
         
         while(res.next()){
             Curso curso = new Curso();
+            System.out.println("Instanciando curso");
+            
             Professor professor = new Professor();
+            System.out.println("Instanciando professor");
+            
+            System.out.println("Buscando curso pelo id");
             curso = DAO.getCursoById(res.getInt("cursos_id"));
+            
+            System.out.println("Buscando professor pelo id");
             professor = DAO.getProfessorById(res.getInt("instrutores_id"));
             
+            System.out.println(professor.getNome());
+            System.out.println(curso.getNome());
+            
             Turma turma = new Turma();
+            System.out.println("Buscandp tuplas");
             
             turma.setId(res.getInt("id"));
             turma.setProfessor(professor);
             turma.setCurso(curso);
             String data = res.getString("data_inicio");
             turma.setDataInicio(data);
-            data = res.getString("data_fim");
+            data = res.getString("data_final");
             turma.setDataInicio(data);
             turma.setCargaHoraria(res.getInt("carga_horaria"));
+            System.out.println(turma.getCurso().getNome());
+            System.out.println(turma.getProfessor().getNome());
+            
             turmas.add(turma);
         }
         return turmas;
@@ -194,8 +214,12 @@ public class DAO {
         }
         return professorSaida;
     }
+    
+    
+    
     public static Turma getTurmaById(int id){
         Turma turmaSaida = new Turma();
+        
         for(Turma turma : turmas){
             if(turma.getId() == id){
                 turmaSaida = turma;
