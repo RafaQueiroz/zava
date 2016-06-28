@@ -19,7 +19,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../css/style.css"/>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Cursos/css/style.css"/>
         <title>Cursos</title>
     </head>
     <body>
@@ -44,13 +46,22 @@
               <div class="navbar-header">
                 <a class="navbar-brand" href="index.html">SGC</a>
               </div>
-
+                
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="matricula.jsp">Matricula</a></li>
+                        <li><a href="/Cursos/index.html">Sair</a></li>
+                      </ul>
+                    </li>
+                  </ul>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="acessibility-menu">      
-                <ul>
-                    <li><a href="matricula.jsp">Matricula</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                
+                  
+                  
+                  <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Acessibilidade <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -66,7 +77,7 @@
             </div><!-- /.container-fluid -->
         </nav>
         <div class="container">
-            <h1>Matricula</h1>
+            <h1 class="logo">Matricula</h1>
             <h4><%= aluno.getNome()%>, selecione um curso para se matricular</h4>
             <div class="form">
                 <form action="SvFazMatricula" method="post">
@@ -77,9 +88,13 @@
                             <option value="${row.id}">${row.nome}</option>
                         </c:forEach>
                     </select>
-                    <input type="submit" value="Matricular">
+                    <button type="submit" name="matricula">Matricular</button>
                 </form>
             </div>
+            <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+            <script src="js/index.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         </div>
         
     </body>

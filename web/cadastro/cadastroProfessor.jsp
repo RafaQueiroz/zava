@@ -3,13 +3,24 @@
     Created on : 23/06/2016, 21:28:44
     Author     : 0369152
 --%>
+<%@page import="classes.Professor"%>
+<%@page import="classes.Aluno"%>
+<%
+    Professor professor = new Professor();
+    HttpSession httpSession = request.getSession(true);
+    
+    professor = (Professor) httpSession.getAttribute("professor");
+    System.out.println(professor.getNome()+" "+professor.getId());
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="/Cursos/css/style.css"/>
 
         <title>Curso</title>
     </head>
@@ -19,18 +30,27 @@
             <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">SGC</a>
+                <a class="navbar-brand" href="/Cursos/home.jsp">SGC</a>
               </div>
-
+                
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/Cursos/cadastro/cadastroAlunos.jsp">Alunos</a></li>
+                        <li><a href="/Cursos/cadastro/cadastroCursos.jsp">Cursos</a></li>
+                        <li><a href="/Cursos/cadastro/cadastroTurma.jsp">Turma</a></li>
+                        <li><a href="/Cursos/cadastro/cadastroProfessor.jsp">Professor</a></li>
+                        <li><a href="/Cursos/index.html">Sair</a></li>
+                      </ul>
+                    </li>
+                  </ul>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="acessibility-menu">      
-                <ul>
-                    <li><a href="/Cursos/cadastro/cadastroAlunos.jsp">Cadastro de Alunos</a></li>
-                    <li><a href="/Cursos/cadastro/cadastroProfessor.jsp">Cadastro de Professores</a></li>
-                    <li><a href="/Cursos/cadastro/cadastroCursos.jsp">Cadastro de Curso</a></li>
-                    <li><a href="/Cursos/cadastro/cadastroTurma.jsp">Cadastro de Turma</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                
+                  
+                  
+                  <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Acessibilidade <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -46,9 +66,9 @@
             </div><!-- /.container-fluid -->
         </nav>
         <div class="container">
-            <h1>Cadastro de Professores</h1>
+            <h1 class="logo">Cadastro de Professores</h1>
             <div class="form">
-                <form action="../SvCadastraProfessor" method="post">
+                <form action="/Cursos/SvCadastraProfessor" method="post">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome">
 
@@ -62,12 +82,16 @@
                 <input type="number" name="valorHora">
 
                 <label for="nome">Senha:</label>
-                <input type="text" name="senha">
+                <input type="password" name="senha">
                 
-                <input type="submit" value="Cadastrar" name="cadastra">
+                <button type="submit" name="cadastra">Cadastrar</button>
             </form>
             </div>
             
         </div>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </body>
 </html>

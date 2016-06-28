@@ -131,7 +131,7 @@ public class DAO {
         String query ="insert into alunos "
                 + "values(salunos.nextval, '"+aluno.getCpf()+"','"+aluno.getNome()+"','"
                 +aluno.getEmail()+"','"+aluno.getTelefone()+"',to_date('"+aluno.getDataNasc()+"','dd/mm/yy'),'"
-                +aluno.getSenha()+"');";
+                +aluno.getSenha()+"')";
         System.out.println(query);
         con.executaQuery(query);
         System.out.println("Insere Aluno!");

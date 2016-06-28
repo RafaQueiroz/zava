@@ -52,16 +52,13 @@ public class SvFazMatricula extends HttpServlet {
             Matricula matricula = new Matricula(turma, aluno);
             DAO.insereMatricula(matricula);
             
-            RequestDispatcher rd = request.getRequestDispatcher("/Cursos/home.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
             rd.forward(request, response);
             
             
         } catch (SQLException ex) {
             Logger.getLogger(SvFazMatricula.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
+        }   
         
     }
 }

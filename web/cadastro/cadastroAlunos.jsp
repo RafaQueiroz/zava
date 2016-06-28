@@ -4,12 +4,24 @@
     Author     : 0369152
 --%>
 
+<%@page import="classes.Professor"%>
+<%@page import="classes.Aluno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    Professor professor = new Professor();
+    HttpSession httpSession = request.getSession(true);
+    
+    professor = (Professor) httpSession.getAttribute("professor");
+    System.out.println(professor.getNome()+" "+professor.getId());;
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Cursos/css/style.css"/>
+        <!-- Latest compiled and minified CSS -->
         <title>JSP Page</title>
     </head>
     <body>
@@ -17,18 +29,27 @@
             <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">SGC</a>
+                <a class="navbar-brand" href="/Cursos/home.jsp">SGC</a>
               </div>
-
+                
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li class="active"><a href="/Cursos/cadastro/cadastroAlunos.jsp">Alunos</a></li>
+                        <li><a href="/Cursos/cadastro/cadastroCursos.jsp">Cursos</a></li>
+                        <li><a href="/Cursos/cadastro/cadastroTurma.jsp">Turma</a></li>
+                        <li><a href="/Cursos/cadastro/cadastroProfessor.jsp">Professor</a></li>
+                        <li><a href="/Cursos/index.html">Sair</a></li>
+                      </ul>
+                    </li>
+                  </ul>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="acessibility-menu">      
-                <ul>
-                    <li><a href="/Cursos/cadastro/cadastroAlunos.jsp">Cadastro de Alunos</a></li>
-                    <li><a href="/Cursos/cadastro/cadastroProfessor.jsp">Cadastro de Professores</a></li>
-                    <li><a href="/Cursos/cadastro/cadastroCursos.jsp">Cadastro de Curso</a></li>
-                    <li><a href="/Cursos/cadastro/cadastroTurma.jsp">Cadastro de Turma</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                
+                  
+                  
+                  <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Acessibilidade <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -45,9 +66,9 @@
         </nav>
         <div class="container">
             
-        <h1>Cadastro de alunos</h1>
+        <h1 class="logo">Cadastro de alunos</h1>
         <div class="form">
-            <form action="../SvCadastraAluno" method="post" form="login-form">
+            <form action="/Cursos/SvCadastraAluno" method="post" form="login-form">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome">
 
@@ -64,9 +85,9 @@
                 <input type="text" name="dataNascimento">
 
                 <label for="nome">Senha:</label>
-                <input type="text" name="senha">
+                <input type="password" name="senha">
                 
-                <input type="submit" value="Cadastrar" name="cadastra">
+                <button type="submit" name="cadastra">Cadastrar</button>
             </form>
         </div>
         </div>

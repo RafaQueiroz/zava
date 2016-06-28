@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +30,7 @@ public class SvCadastraProfessor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         
         String nome = (String) request.getParameter("nome");
         String email = (String) request.getParameter("email");
@@ -43,6 +45,10 @@ public class SvCadastraProfessor extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(SvCadastraProfessor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        RequestDispatcher rd = request.getRequestDispatcher("homeProfessor.jsp");
+        rd.forward(request, response);
+        
     }
 
     

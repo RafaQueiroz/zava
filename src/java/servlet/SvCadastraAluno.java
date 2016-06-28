@@ -2,6 +2,7 @@ package servlet;
 
 import classes.Aluno;
 import classes.DAO;
+import classes.Professor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sun.rmi.server.Dispatcher;
 
 /**

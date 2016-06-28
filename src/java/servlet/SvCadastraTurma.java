@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +51,8 @@ public class SvCadastraTurma extends HttpServlet {
             Logger.getLogger(SvCadastraTurma.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-       
+        RequestDispatcher rd = request.getRequestDispatcher("homeProfessor.jsp");
+        rd.forward(request, response);
         
         
     

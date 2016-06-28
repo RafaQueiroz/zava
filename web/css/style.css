@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 @import url(http://db.onlinewebfonts.com/c/e60c902d0d76b553b3be88bc2055de68?family=Tandelle);
 
-.logo {
+.logo, h4 {
   font-family: "Tandelle";
   color: #f2f2f2;
   text-align: center;

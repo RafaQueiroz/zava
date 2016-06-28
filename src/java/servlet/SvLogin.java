@@ -70,7 +70,7 @@ public class SvLogin extends HttpServlet {
                             usuario.setTipo(1);
                             
                             destino="homeProfessor.jsp";
-//                            session.setAttribute("professor", professor);
+                            session.setAttribute("professor", professor);
                             request.setAttribute("professor", professor);
                             logado = true;
                             break;
